@@ -1,0 +1,17 @@
+description: Ultralytics YOLO11s model trained on C:\Internship Project YoloV11\dataset_real_train_valid_test_intern\data.yaml
+author: Ultralytics
+date: '2024-11-14T18:12:40.676496'
+version: 8.3.31
+license: AGPL-3.0 License (https://ultralytics.com/license)
+docs: https://docs.ultralytics.com
+stride: 32
+task: detect
+batch: 1
+imgsz:
+- 640
+- 640
+names:
+  0: Nicks
+  1: Dents
+  2: Scratches
+  3: Pittings

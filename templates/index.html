@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Defects Bar Chart</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    canvas {
+      max-width: 800px;
+      margin: auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="text-align: center;">Defect Bar Chart</h1>
+  <canvas id="defectChart"></canvas>
+
+  <script>
+    // Defect colors and thicknesses
+    const colors = {
+      'Nicks': { 'color': 'rgb(60, 60, 255)', 'thickness': 2 },
+      'Dents': { 'color': 'rgb(148, 156, 255)', 'thickness': 2 },
+      'Scratches': { 'color': 'rgb(28, 116, 255)', 'thickness': 2 },
+      'Pittings': { 'color': 'rgb(28, 180, 255)', 'thickness': 2 }
+    };
+
+    // Sample data for the defects
+    const defectData = {
+      'Nicks': 12,
+      'Dents': 19,
+      'Scratches': 5,
+      'Pittings': 7
+    };
+
+    // Prepare data for Chart.js
+    const labels = Object.keys(defectData);
+    const data = Object.values(defectData);
+    const barColors = labels.map(label => colors[label].color);
+
+    const ctx = document.getElementById('defectChart').getContext('2d');
+    const defectChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Defect Count',
+          data: data,
+          backgroundColor: barColors,
+          borderColor: barColors,
+          borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            beginAtZero: true
+          },
+          y: {
+            beginAtZero: true
+          }
+        },
+        plugins: {
+          legend: {
+            display: false
+          }
+        },
+        layout: {
+          padding: 20
+        }
+      }
+    });
+  </script>
+</body>
+</html>
