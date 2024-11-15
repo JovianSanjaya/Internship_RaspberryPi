@@ -2,8 +2,10 @@ import numpy as np
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
+n=3
+
 # File path for the input text file and output directory
-input_file_path = './values/frame_3_rgb_matrices.txt'
+input_file_path = f'./values/original/frame_{n}_rgb_matrices.txt'
 output_dir = './histogram/'  # Change to your desired directory
 
 # Read the file and extract numbers
@@ -59,7 +61,7 @@ fig.update_layout(
 )
 
 # Save the combined histogram plot as an HTML file
-output_file_path = f'{output_dir}/combined_rgb_histogram.html'
+output_file_path = f'{output_dir}/combined_rgb_histogram_frame_{n}.html'
 fig.write_html(output_file_path)
 
 print(f"Combined RGB histogram saved to {output_file_path}")

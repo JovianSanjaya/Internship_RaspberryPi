@@ -19,8 +19,6 @@ def save_rgb_matrices_to_txt(image_path, output_txt_path):
 
     # Open a text file to write the RGB values
     with open(output_txt_path, 'w') as file:
-        file.write(f"Image Dimensions: {width}x{height} pixels\n")
-        file.write("RGB Matrices:\n")
 
         # Iterate over each pixel and write the RGB values to the file
         for y in range(height):
@@ -36,7 +34,7 @@ def save_rgb_matrices_to_txt(image_path, output_txt_path):
     print(f"RGB values saved to {output_txt_path}")
 
 # Example usage
-image_path = './frames/frame_3.jpg'  # Replace with the path to your .jpg file
-output_txt_path = 'frame_3_rgb_matrices.txt'  # Output .txt file path
+image_path = './cropped/frame_2.jpg'  # Replace with the path to your .jpg file
+output_txt_path = './values/original/frame_2_rgb_matrices.txt'  # Output .txt file path
 
 save_rgb_matrices_to_txt(image_path, output_txt_path)
