@@ -5,9 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Defects Bar Chart</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
   <style>
     canvas {
-      max-width: 800px;
+      max-width: 1000px; /* Increase the maximum width */
+      height: 700px;     /* Set a fixed height to make the chart bigger */
       margin: auto;
       display: block;
     }
@@ -18,20 +20,20 @@
   <canvas id="defectChart"></canvas>
 
   <script>
-    // Defect colors and thicknesses
+    // Defect colors and thicknesses in RGB format
     const colors = {
-      'Nicks': { 'color': 'rgb(60, 60, 255)', 'thickness': 2 },
-      'Dents': { 'color': 'rgb(148, 156, 255)', 'thickness': 2 },
-      'Scratches': { 'color': 'rgb(28, 116, 255)', 'thickness': 2 },
-      'Pittings': { 'color': 'rgb(28, 180, 255)', 'thickness': 2 }
+      'Nicks': { 'color': 'rgb(255, 60, 60)', 'thickness': 2 },   // Red
+      'Dents': { 'color': 'rgb(255, 156, 148)', 'thickness': 2 },  // Light Red
+      'Scratches': { 'color': 'rgb(255, 116, 28)', 'thickness': 2 }, // Orange
+      'Pittings': { 'color': 'rgb(255, 180, 28)', 'thickness': 2 }   // Yellow
     };
 
     // Sample data for the defects
-    const defectData = {
-      'Nicks': 12,
-      'Dents': 19,
-      'Scratches': 5,
-      'Pittings': 7
+    let defectData = {
+      'Nicks': 0,
+      'Dents': 0,
+      'Scratches': 0,
+      'Pittings': 0
     };
 
     // Prepare data for Chart.js
@@ -72,6 +74,20 @@
         }
       }
     });
+
+    // Initialize SocketIO connection
+    const socket = io.connect('http://localhost:5000');
+
+    // Listen for updates to defect counts from the server
+    socket.on('update_counts', function (newCounts) {
+      // Update the defect counts
+      defectData = newCounts;
+
+      // Update the chart data and re-render the chart
+      defectChart.data.datasets[0].data = Object.values(defectData);
+      defectChart.update();
+    });
+
   </script>
 </body>
 </html>
