@@ -6,11 +6,11 @@ import time
 import os
 
 # Set up the directory to save frames
-save_directory = "/home/pi/Internship/frames"
+save_directory = "./original images"
 os.makedirs(save_directory, exist_ok=True)
 
 # Define the weight path
-weight_path = "./models/personal model/best_ncnn_model"
+weight_path = "../models/best_ncnn_model"
 
 # Load the model
 model = YOLO(weight_path)

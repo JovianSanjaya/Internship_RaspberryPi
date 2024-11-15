@@ -4,7 +4,7 @@ from plotly.subplots import make_subplots
 
 # File path for the input text file and output directory
 input_file_path = './values/frame_3_rgb_matrices.txt'
-output_dir = './graph/'  # Change to your desired directory
+output_dir = './histogram/'  # Change to your desired directory
 
 # Read the file and extract numbers
 red_values = []
